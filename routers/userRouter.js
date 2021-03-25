@@ -1,18 +1,17 @@
 const express = require("express");
+const {
+  user,
+  userDetail,
+  editProfile,
+  changePassword,
+} = require("../controllers/userController");
+
 const routes = require("../routers");
 
 const userRouter = express.Router();
 
-userRouter.get(routes.users, (req, res) => {
-  res.send("users");
-});
-userRouter.get(routes.userDetail, (req, res) => {
-  res.send("userDetail");
-});
-userRouter.get(routes.editProfile, (req, res) => {
-  res.send("editProfile");
-});
-userRouter.get(routes.changePassword, (req, res) => {
-  res.send("changePassword");
-});
+userRouter.get(routes.users, user);
+userRouter.get(routes.userDetail, userDetail);
+userRouter.get(routes.editProfile, editProfile);
+userRouter.get(routes.changePassword, changePassword);
 module.exports = userRouter;
