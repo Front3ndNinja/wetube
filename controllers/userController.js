@@ -1,27 +1,45 @@
-export const join = (req, res) => {
-  res.send("join");
+import routes from "../routers";
+
+export const getJoin = (req, res) => {
+  res.render("join", { pageTitle: "Join" });
 };
 
-export const login = (req, res) => {
-  res.send("login");
+export const postJoin = (req, res) => {
+  const {
+    body: { name, email, password, password2 },
+  } = req;
+  if (password !== password2) {
+    res.status(400);
+    res.render("join", { pageTitle: "Join" });
+  } else {
+    res.redirect(routes.home);
+  }
+};
+
+export const getLogin = (req, res) => {
+  res.render("login", { pageTitle: "Join" });
+};
+
+export const postLogin = (req, res) => {
+  res.redirect(routes.home);
 };
 
 export const logout = (req, res) => {
-  res.send("logout");
+  res.redirect(routes.home);
 };
 
 export const user = (req, res) => {
-  res.send("user");
+  res.send("user page ");
 };
 
 export const userDetail = (req, res) => {
-  res.send("user Detail 1");
+  res.render("userDetail", { pageTitle: "User Details" });
 };
 
 export const editProfile = (req, res) => {
-  res.send("editProfile");
+  res.render("editProfile", { pageTitle: "Edit Profile" });
 };
 
 export const changePassword = (req, res) => {
-  res.send("changePassword");
+  res.render("changePassword", { pageTitle: "Change Password" });
 };

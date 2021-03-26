@@ -1,27 +1,39 @@
+import routes from "../routers";
+
+const videos = require("../db");
+
 export const home = (req, res) => {
-  res.render("home", { pageTitle: "Home" });
+  res.render("home", { pageTitle: "Home", videos });
 };
 
 export const search = (req, res) => {
-  res.send("search video");
+  const searchingBy = req.query.term;
+  res.render("search", {
+    pageTitle: "Search",
+    searchingBy: searchingBy,
+    videos,
+  });
 };
 
-export const videos = (req, res) => {
-  res.send("videos");
+export const getUpload = (req, res) => {
+  res.render("upload", { pageTitle: "Upload" });
 };
 
-export const upload = (req, res) => {
-  res.send("upload ");
+export const postUpload = (req, res) => {
+  const {
+    body: { file, title, description },
+  } = req;
+  res.redirect(routes.videoDetail(343434));
 };
 
 export const videoDetail = (req, res) => {
-  res.send("videoDetail ");
+  res.render("videoDetail", { pageTitle: "Video Detail" });
 };
 
 export const editVideo = (req, res) => {
-  res.send("editVideo ");
+  res.render("editVideo", { pageTitle: "EditVideo" });
 };
 
 export const deleteVideo = (req, res) => {
-  res.send(" deleteVideo");
+  res.render("deleteVideo", { pageTitle: "deleteVideo" });
 };
