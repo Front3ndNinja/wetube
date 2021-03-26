@@ -25,6 +25,6 @@ app.use(localMiddleware);
 // routers
 app.use(routes.home, globalRouter);
 app.use(routes.users, userRouter);
-app.use(routes.users, videoRouter);
+app.use(routes.videos, videoRouter);
 
 module.exports = app;
