@@ -1,43 +1,23 @@
-const videos = [
-  {
-    id: 343434,
-    title: "test videos 1",
-    description: "test video number 1",
-    views: 24,
-    videoFile:
-      "https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4",
-    creator: {
-      id: 2342342,
-      name: "Test User",
-      email: "test@gmail.com",
-    },
-  },
-  {
-    id: 343434,
-    title: "test videos 2",
-    description: "test video number 1",
-    views: 27,
-    videoFile:
-      "https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4",
-    creator: {
-      id: 2342354,
-      name: "Test User",
-      email: "test@gmail.com",
-    },
-  },
-  {
-    id: 34343664,
-    title: "test videos 3",
-    description: "test video number 1",
-    views: 89,
-    videoFile:
-      "https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4",
-    creator: {
-      id: 2342342,
-      name: "Test User",
-      email: "test@gmail.com",
-    },
-  },
-];
+const mongoose = require("mongoose");
+const dotenv = require("dotenv");
+dotenv.config();
 
-module.exports = videos;
+mongoose.connect(process.env.MONGO_URL, {
+  useNewUrlParser: true,
+  useFindAndModify: false,
+  useUnifiedTopology: true,
+});
+
+const db = mongoose.connection;
+
+// module.exports = userRouter;
+const handleOpen = () => {
+  console.log("connected to db");
+};
+
+const handleError = () => {
+  console.log(`error on db connection ${error}`);
+};
+
+db.once("open", handleOpen);
+db.on("error", handleError);
