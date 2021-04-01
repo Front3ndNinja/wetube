@@ -4,6 +4,7 @@ const helmet = require("helmet");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const { localMiddleware } = require("./middleware");
+
 const userRouter = require("./routers/userRouter");
 const videoRouter = require("./routers/videoRouter");
 const globalRouter = require("./routers/globalRouter");
@@ -15,6 +16,7 @@ const app = express();
 // middlewares
 app.use(helmet());
 app.set("view engine", "pug");
+app.use("/uploads", express.static("uploads"));
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
